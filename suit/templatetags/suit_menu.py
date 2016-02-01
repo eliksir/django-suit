@@ -50,7 +50,7 @@ def get_admin_site(current_app):
     """
     try:
         resolver_match = resolve(reverse('%s:index' % current_app))
-        for func_closure in resolver_match.func.func_closure:
+        for func_closure in resolver_match.func.__closure__:
             if isinstance(func_closure.cell_contents, AdminSite):
                 return func_closure.cell_contents
     except:
